@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkouts</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file link here -->
+</head>
+<body>
+  <header>
+    <h1>Library Management System</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="students.html">Students</a></li>
+        <li><a href="checkouts.html">Checkouts</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Books Checkout Information</h2>
+    <div id="checkouts-list">
+      <!-- Dynamically populated list of checkouts will appear here -->
+    </div>
+  </main>
+
+  <footer>
+    <p>Library Management System - &copy; 2024</p>
+  </footer>
+
+  <script src="app.js"></script> <!-- Link to your JavaScript file here -->
+  <script>
+    // Example: Fetch checkout data from the backend (assumes you have an API endpoint for checkouts)
+    fetch('https://your-backend-url.com/checkouts') // Change this to your actual API endpoint
+      .then(response => response.json())
+      .then(checkouts => {
+        const checkoutsListElement = document.getElementById('checkouts-list');
+        checkouts.forEach(checkout => {
+          const checkoutElement = document.createElement('div');
+          checkoutElement.classList.add('checkout');
+          checkoutElement.innerHTML = `
+            <p><strong>Student:</strong> ${checkout.student_name} (ID: ${checkout.student_id})</p>
+            <p><strong>Book:</strong> ${checkout.book_title} (ISBN: ${checkout.book_isbn})</p>
+            <p><strong>Checkout Date:</strong> ${checkout.checkout_date}</p>
+            <p><strong>Return Date:</strong> ${checkout.return_date || 'Not returned yet'}</p>
+          `;
+          checkoutsListElement.appendChild(checkoutElement);
+        });
+      })
+      .catch(error => console.error('Error fetching checkouts:', error));
+  </script>
+</body>
+</html>
