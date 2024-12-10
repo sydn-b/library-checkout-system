@@ -30,10 +30,10 @@
     <p>Library Management System - &copy; 2024</p>
   </footer>
 
-  <script src="app.js"></script> <!-- Link to your JavaScript file here -->
+  <script src="js/app.js"></script> <!-- Link to your JavaScript file here -->
   <script>
     // Example: Fetch students data from the backend (assumes you have an API endpoint for students)
-    fetch('https://your-backend-url.com/students') // Change this to your actual API endpoint
+    fetch('http://localhost:3000/api/students') // For the students data 
       .then(response => response.json())
       .then(students => {
         const studentsListElement = document.getElementById('students-list');
